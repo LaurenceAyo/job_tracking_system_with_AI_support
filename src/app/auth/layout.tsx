@@ -2,25 +2,29 @@
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import jobTrackerLogo from "../../icons/jobtracker_logo.png"; // adjust path
+import jobTrackerLogo from "@/icons/jobtracker_logo.png";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLogin = pathname.includes("/login");
+  const isSplitLayout = pathname.includes("/login") || pathname.includes("/register");
+
+  if (!isSplitLayout) {
+    // Forgot-password (and any future full-bleed pages) render on their own
+    return <>{children}</>;
+  }
 
   return (
     <div className="min-h-screen flex overflow-hidden">
-      {/* Form side */}
       <motion.div
         layout
         transition={{ type: "spring", stiffness: 260, damping: 30 }}
-        className={`flex flex-col justify-center px-10 py-12 w-full max-w-md bg-white z-10 ${isLogin ? "order-1" : "order-2"
+        className={`flex flex-col justify-center px-12 py-12 w-full max-w-md bg-white z-10 ${isLogin ? "order-1" : "order-2"
           }`}
       >
         {children}
       </motion.div>
 
-      {/* Gradient ball side */}
       <motion.div
         layout
         transition={{ type: "spring", stiffness: 260, damping: 30 }}
@@ -28,22 +32,16 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           }`}
       >
         <div
-          className={`absolute top-1/2 -translate-y-1/2 w-[100%] h-[140%] rounded-full  ${isLogin ? "left-60" : "right-60"
-            }`}
+          className="absolute top-1/2 w-[120%] h-[140%] rounded-full"
           style={{
             background: "linear-gradient(135deg, #7be1d5 0%, #63ded1 40%, #8AD591 100%)",
+            left: isLogin ? 0 : "auto",
+            right: isLogin ? "auto" : 0,
+            transform: `translateY(-50%) translateX(${isLogin ? "15%" : "-15%"})`,
           }}
         />
-        {/* Logo — anchored to ball's actual center */}
-        <div
-          className="absolute z-10 flex flex-col items-center gap-6"
-          style={{
-            top: "50%",
-            left: isLogin ? "65%" : "35%", // ball center: left-0 ball centers at 65%, right-0 ball centers at 35%
-            transform: "translate(-50%, -50%) translate(0px, 0px)", // <- tweak the last two values (x, y) to nudge manually
-          }}
-        >
-          <div className="w-80 h-80 flex items-center justify-center">
+        <div className="relative ">
+          <div className="w-100 h-100 flex items-center justify-center">
             <Image src={jobTrackerLogo} alt="JobTracker Logo" className="w-full h-auto object-contain" />
           </div>
         </div>
