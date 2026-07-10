@@ -156,7 +156,6 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
       {showAddModal && (
         <AddApplicationModal
           onClose={() => setShowAddModal(false)}
-          onAdd={handleAdd}
         />
       )}
 
