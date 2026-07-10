@@ -34,16 +34,21 @@ export default function DashboardLayout({ children }: { children?: React.ReactNo
   }
 
   return (
-    <div className="min-h-screen flex bg-[#eaf3ff]">
+    <div className="min-h-screen  bg-[#eaf3ff]">
 
       {/* Main content */}
       <main className="flex-1 p-8">
-        <h1 className="text-xl font-semibold text-gray-900 mb-6">Overview</h1>
+        <h1 className="text-xl font-semibold text-gray-900 mb-5">Overview</h1>
 
         {/* Stat cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        {/* Stat cards */}
+        <div className="grid grid-cols-4 gap-4 mb-6 mr-60">
           {stats.map((stat) => (
-            <div key={stat.label} className={`rounded-xl p-5 ${stat.color}`}>
+            <div
+              key={stat.label}
+              onClick={() => router.push(`/dashboard/applications?status=${stat.label.toLowerCase()}`)}
+              className={`shadow-lg rounded-xl p-5 cursor-pointer transition-all duration-200 hover:shadow-xl hover:-translate-y-1 active:scale-95 ${stat.color}`}
+            >
               <div className="text-2xl font-semibold text-gray-900">{stat.value}</div>
               <div className="text-sm text-gray-600">{stat.label}</div>
             </div>
