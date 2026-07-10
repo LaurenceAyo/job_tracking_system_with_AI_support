@@ -6,15 +6,16 @@ import { Plus, Trash2, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 import AddApplicationModal from "@/components/AddApplicationModal";
 import CoverLetterModal from "@/components/CoverLetterModal";
+import Image from "next/image";
+import emptyman from "@/icons/empty_man.png";
 
 const statusColors: Record<ApplicationStatus, string> = {
   applied: "bg-blue-50 text-blue-700 border border-blue-200",
   interview: "bg-yellow-50 text-yellow-700 border border-yellow-200",
   offer: "bg-green-50 text-green-700 border border-green-200",
-  rejected: "bg-red-50 text-red-700 border border-red-200",
 };
 
-const statusOptions: ApplicationStatus[] = ["applied", "interview", "offer", "rejected"];
+const statusOptions: ApplicationStatus[] = ["applied", "interview", "offer"];
 
 export default function ApplicationsClient({ initialApplications }: { initialApplications: Application[] }) {
   const [applications, setApplications] = useState(initialApplications);
@@ -46,13 +47,14 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
   }
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="mx-auto p-15 mx-auto ml-8">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mt-8 mb-6">
         <h1 className="text-2xl font-semibold text-gray-900">Applications</h1>
+        
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          className="absolute right-10 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
         >
           <Plus size={16} />
           Add application
@@ -77,10 +79,17 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-xl max-w-6xl border border-gray-200 overflow-hidden">
+
+        <div className="w-100 h-100 flex items-center ml-20 justify-center">
+            <Image src={emptyman} alt="Empty_man" className="w-full h-auto object-contain" />
+          </div>
         {filtered.length === 0 ? (
-          <div className="py-16 text-center text-sm text-gray-400">
-            No applications found.
+          <div className="py-12 text-center text-2xl text-gray-400">
+            No Jobs Listed Here
+            <div className="text-center text-sm text-gray-400">
+              Applications you saved will show up here...
+            </div>
           </div>
         ) : (
           <table className="w-full text-sm">

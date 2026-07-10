@@ -41,7 +41,6 @@ export default function DashboardLayout({ children }: { children?: React.ReactNo
         <h1 className="text-xl font-semibold text-gray-900 mb-5">Overview</h1>
 
         {/* Stat cards */}
-        {/* Stat cards */}
         <div className="grid grid-cols-4 gap-4 mb-6 mr-60">
           {stats.map((stat) => (
             <div
