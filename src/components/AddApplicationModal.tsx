@@ -10,7 +10,7 @@ export default function ApplicationDetailsModal({ onClose }: { onClose: () => vo
   const [form, setForm] = useState({
     company_name: "",
     job_title: "",
-    status: "Applied" as ApplicationStatus,
+    status: "applied" as ApplicationStatus,
     applied_date: "",
     notes: "", // used as job description/requirements
     job_url: "",
@@ -92,9 +92,9 @@ export default function ApplicationDetailsModal({ onClose }: { onClose: () => vo
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-400"
             >
-              <option value="Applied">Applied</option>
-              <option value="Interview">Interview</option>
-              <option value="Offer">Offer</option>
+              <option value="applied">Applied</option>
+              <option value="interview">Interview</option>
+              <option value="offer">Offer</option>
             </select>
           </div>
           <div>

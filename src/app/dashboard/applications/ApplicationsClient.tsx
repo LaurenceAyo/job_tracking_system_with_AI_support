@@ -51,7 +51,7 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
       {/* Header */}
       <div className="flex items-center justify-between mt-8 mb-6">
         <h1 className="text-2xl font-semibold text-gray-900">Applications</h1>
-        
+
         <button
           onClick={() => setShowAddModal(true)}
           className="absolute right-10 flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
@@ -67,11 +67,10 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
           <button
             key={s}
             onClick={() => setFilterStatus(s)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-              filterStatus === s
+            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${filterStatus === s
                 ? "bg-gray-900 text-white"
                 : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
-            }`}
+              }`}
           >
             {s === "all" ? "All" : s.charAt(0).toUpperCase() + s.slice(1)}
           </button>
@@ -80,14 +79,13 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
 
       {/* Table */}
       <div className="bg-white rounded-xl max-w-6xl border border-gray-200 overflow-hidden">
-
-        <div className="w-100 h-100 flex items-center ml-20 justify-center">
-            <Image src={emptyman} alt="Empty_man" className="w-full h-auto object-contain" />
-          </div>
         {filtered.length === 0 ? (
-          <div className="py-12 text-center text-2xl text-gray-400">
-            No Jobs Listed Here
-            <div className="text-center text-sm text-gray-400">
+          <div className="py-12 text-center">
+            <div className="w-100 h-100 flex items-center mx-auto justify-center">
+              <Image src={emptyman} alt="Empty_man" className="w-full h-auto object-contain" />
+            </div>
+            <div className="text-2xl text-gray-400 mr-24">No Jobs Listed Here</div>
+            <div className="text-center text-sm text-gray-400 mr-24">
               Applications you saved will show up here...
             </div>
           </div>
@@ -120,10 +118,10 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
                     <select
                       value={app.status}
                       onChange={(e) => handleStatusChange(app.id, e.target.value as ApplicationStatus)}
-                      className={`text-xs px-2.5 py-1 rounded-full font-medium border-0 cursor-pointer focus:outline-none ${statusColors[app.status]}`}
+                      className={`text-xs px-2.5 py-1 rounded-full font-medium border-0 cursor-pointer capitalize focus:outline-none ${statusColors[app.status]}`}
                     >
                       {statusOptions.map((s) => (
-                        <option key={s} value={s}>{s}</option>
+                        <option key={s} value={s} className="capitalize">{s}</option>
                       ))}
                     </select>
                   </td>

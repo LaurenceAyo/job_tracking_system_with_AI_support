@@ -11,7 +11,7 @@ export async function addApplication(formData: {
   applied_date: string;
   notes: string;
 }) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("Not authenticated");
 
@@ -26,7 +26,7 @@ export async function addApplication(formData: {
 }
 
 export async function updateStatus(id: string, status: ApplicationStatus) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase
     .from("applications")
     .update({ status })
@@ -37,7 +37,7 @@ export async function updateStatus(id: string, status: ApplicationStatus) {
 }
 
 export async function deleteApplication(id: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from("applications").delete().eq("id", id);
   if (error) throw new Error(error.message);
   revalidatePath("/dashboard/applications");
