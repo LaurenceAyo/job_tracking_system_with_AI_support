@@ -106,6 +106,7 @@ export default function ApplicationDetailsModal({ onClose }: { onClose: () => vo
               name="applied_date"
               value={form.applied_date}
               onChange={handleChange}
+              max={new Date().toISOString().split("T")[0]}
               className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-400"
             />
           </div>
