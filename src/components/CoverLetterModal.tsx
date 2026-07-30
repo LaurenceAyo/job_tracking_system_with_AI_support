@@ -13,7 +13,7 @@ export default function CoverLetterModal({ application, onClose }: Props) {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [history, setHistory] = useState<{ content: string; created_at: string }[]>([]);
+  const [, setHistory] = useState<{ content: string; created_at: string }[]>([]);
   const supabase = createClient();
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function CoverLetterModal({ application, onClose }: Props) {
           {loading ? (
             <div className="flex items-center justify-center py-16 text-sm text-gray-400">
               <div className="animate-spin w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full mr-3" />
-              Generating with Gemini AI...
+              Generating with Groq AI...
             </div>
           ) : content ? (
             <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-700 leading-relaxed whitespace-pre-wrap border border-gray-200">
@@ -82,7 +82,7 @@ export default function CoverLetterModal({ application, onClose }: Props) {
             </div>
           ) : (
             <div className="flex items-center justify-center py-16 text-sm text-gray-400">
-              Click "Generate" to create an AI cover letter for this Hiring Entity.
+              Click &quot;Generate&quot; to create an AI cover letter for this Hiring Entity.
             </div>
           )}
         </div>

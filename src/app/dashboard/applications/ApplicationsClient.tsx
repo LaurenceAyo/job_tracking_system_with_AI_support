@@ -27,12 +27,6 @@ export default function ApplicationsClient({ initialApplications }: { initialApp
     ? applications
     : applications.filter((a) => a.status === filterStatus);
 
-  async function handleAdd(data: Parameters<typeof addApplication>[0]) {
-    await addApplication(data);
-    // Optimistic: refetch or reload
-    window.location.reload();
-  }
-
   async function handleStatusChange(id: string, status: ApplicationStatus) {
     await updateStatus(id, status);
     setApplications((prev) =>

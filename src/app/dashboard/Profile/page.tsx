@@ -61,7 +61,7 @@ export default function ProfilePage() {
 
       for (const section of sections) {
         for (const ext of section.extensions) {
-          const path = `${user.id}/${section.key}.${ext}`;
+          const _path = `${user.id}/${section.key}.${ext}`;
           const { data } = await supabase.storage
             .from("profile-files")
             .list(user.id, { search: `${section.key}.${ext}` });
